@@ -2,7 +2,7 @@ import React from 'react';
 
 const Sobre = () => {
   return (
-    <section className="relative bg-preto-profundo text-branco-neutro py-20 md:py-32 overflow-hidden">
+   <section className="bg-preto-profundo text-branco-neutro py-16 md:py-24">
       {/* Brilho de fundo */}
       <div className="absolute inset-0 bg-gradient-to-br from-azul-tech/10 to-roxo-futurista/10 blur-3xl opacity-20"></div>
 
@@ -23,8 +23,8 @@ const Sobre = () => {
               />
             </div>
 
-            <h3 className="text-2xl md:text-3xl font-bold text-center mb-4">
-              IMPACTO<span className="text-fuchsia-600">360</span>
+            <h3 className="text-fuchsia-600 text-2xl md:text-3xl font-bold text-center mb-4">
+              IMPACTO<span className="text-transparent bg-clip-text bg-gradient-to-r from-azul-tech to-roxo-futurista">360</span>
             </h3>
 
             <p className="text-gray-300 text-base md:text-lg text-center max-w-3xl leading-relaxed">
@@ -36,12 +36,11 @@ const Sobre = () => {
 
           {/* Linha do Tempo Atualizada */}
           <div className="relative w-full max-w-4xl mt-16">
-            <div className="absolute top-1/2 left-0 right-0 h-1 bg-gray-700 rounded-full -translate-y-1/2"></div>
-
+            <div className="absolute top-1/2 left-0 right-0 h-1 bg-fuchsia-600 rounded-full -translate-y-1/2"></div> {/* Usei bg-fuchsia-600 */}
             <div className="flex justify-around items-center text-center relative z-10">
               {/* 2024 - Fundação */}
               <div className="relative">
-                <div className="w-12 h-12 rounded-full bg-fuchsia-600 flex items-center justify-center mx-auto shadow-md hover:scale-110 transition-transform duration-300">
+                <div className="w-12 h-12 rounded-full bg-roxo-futurista flex items-center justify-center mx-auto shadow-md hover:scale-110 transition-transform duration-300"> {/* Bolinha roxa */}
                   <span className="text-sm text-branco-neutro font-bold">2024</span>
                 </div>
                 <p className="mt-4 text-sm md:text-base text-gray-400 font-medium">Fundação</p>
@@ -49,7 +48,7 @@ const Sobre = () => {
 
               {/* 2025 - Expansão */}
               <div className="relative">
-                <div className="w-12 h-12 rounded-full bg-fuchsia-600 flex items-center justify-center mx-auto shadow-md hover:scale-110 transition-transform duration-300">
+                <div className="w-12 h-12 rounded-full bg-roxo-futurista flex items-center justify-center mx-auto shadow-md hover:scale-110 transition-transform duration-300"> {/* Bolinha roxa */}
                   <span className="text-sm text-branco-neutro font-bold">2025</span>
                 </div>
                 <p className="mt-4 text-sm md:text-base text-gray-400 font-medium">Expansão</p>
@@ -57,14 +56,13 @@ const Sobre = () => {
 
               {/* Futuro - Inovação */}
               <div className="relative">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-azul-tech to-roxo-futurista flex items-center justify-center mx-auto shadow-md hover:scale-110 transition-transform duration-300">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-azul-tech to-roxo-futurista flex items-center justify-center mx-auto shadow-md hover:scale-110 transition-transform duration-300"> {/* Bolinha roxa (mantive o gradiente para o "Futuro") */}
                   <span className="text-sm text-branco-neutro font-bold">Futuro</span>
                 </div>
                 <p className="mt-4 text-sm md:text-base text-gray-400 font-medium">Inovação</p>
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </section>

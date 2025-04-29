@@ -1,29 +1,50 @@
+// Exemplo: components/ProjetosAdaptado.js (ou ajuste o seu Projetos.js)
 import React from 'react';
 
-const Projetos = () => {
-  const projetos = [
-    { imagem: '/images/projeto1.jpg' }, // Substitua pelos seus caminhos de imagem
-    { imagem: '/images/projeto2.jpg' },
-    { imagem: '/images/projeto3.jpg' },
-  ];
-
+const ProjetosAdaptado = () => {
+  // REMOVIDO: <section className="bg-preto-profundo text-branco-neutro py-16 md:py-24">
+  // A div abaixo agora é o elemento raiz deste componente específico.
+  // A cor de fundo e padding virão da estrutura pai.
   return (
-    <section className="bg-gray-900 text-white py-16 md:py-24">
-      <div className="container mx-auto px-4 md:px-6 lg:px-8">
-        <h2 className="text-2xl md:text-3xl font-semibold mb-8 text-primary">PROJETOS</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {projetos.map((projeto, index) => (
-            <div key={index} className="relative overflow-hidden rounded-md shadow-md">
-              <img src={projeto.imagem} alt={`Projeto ${index + 1}`} className="w-full h-auto block" />
-              <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-70 text-white p-4">
-                <h3 className="text-sm font-semibold">Trabalho ou caso de sucesso</h3>
-              </div>
-            </div>
-          ))}
+    <div className="text-branco-neutro"> {/* Mantém a cor do texto daqui */}
+      {/* REMOVIDO: Container interno - o container mx-auto estará na estrutura pai */}
+      {/* <div className="container mx-auto px-4 md:px-6 lg:px-8"> */}
+        <h2 className="text-2xl md:text-3xl font-semibold mb-8 text-azul-principal text-center md:text-left">PROJETOS</h2>
+        {/* Seu grid atual. Pode precisar ajustar o número de colunas (sm:grid-cols-2 etc.)
+            para ficar bom quando ocupar apenas metade da tela (md:w-1/2) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+          {/* Projeto 1 */}
+          <div className="rounded-lg overflow-hidden flex flex-col items-center">
+            <img
+              src="/logo.png" // Sua imagem
+              alt="Projeto 1"
+              className="w-32 h-auto object-contain mb-2" // Talvez precise ajustar o tamanho
+            />
+            <h3 className="text-sm font-semibold text-center">Trabalho ou caso de sucesso</h3>
+          </div>
+          {/* Projeto 2 */}
+          <div className="rounded-lg overflow-hidden flex flex-col items-center">
+            <img
+              src="/logo.png" // Sua imagem
+              alt="Projeto 2"
+              className="w-32 h-auto object-contain mb-2"
+            />
+            <h3 className="text-sm font-semibold text-center">Trabalho ou caso de sucesso</h3>
+          </div>
+          {/* Projeto 3 */}
+          <div className="rounded-lg overflow-hidden flex flex-col items-center">
+            <img
+              src="/logo.png" // Sua imagem
+              alt="Projeto 3"
+              className="w-32 h-auto object-contain mb-2"
+            />
+            <h3 className="text-sm font-semibold text-center">Trabalho ou caso de sucesso</h3>
+          </div>
         </div>
-      </div>
-    </section>
+      {/* </div> */} {/* Fim do container interno removido */}
+    </div> // Fim da div raiz do componente adaptado
   );
+  // REMOVIDO: </section>
 };
 
-export default Projetos;
+export default ProjetosAdaptado;
