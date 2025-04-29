@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaFacebookF, FaYoutube, FaImage, FaInstagram, FaCode } from 'react-icons/fa'; // Importei FaInstagram e FaCode
+import {FaYoutube, FaImage, FaInstagram, FaCode } from 'react-icons/fa'; // Importei FaInstagram e FaCode
 
 const Servicos = () => {
   return (
