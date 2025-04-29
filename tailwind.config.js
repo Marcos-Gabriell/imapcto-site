@@ -14,6 +14,8 @@ module.exports = {
         'preto-profundo': '#0D0D0D',
         'branco-neutro': '#FFFFFF',
         'roxo-futurista': '#7F00FF',
+        'azul-tech': '#007bff', // Adicione a cor azul tech aqui
+        'rosa-medio': '#FF69B4', // Adicione a cor rosa médio aqui
         // fuchsia-600 já existe no Tailwind padrão
       },
       spacing: {
@@ -33,4 +35,4 @@ module.exports = {
     },
   },
   plugins: [],
-}
+};

@@ -1,27 +1,35 @@
 import React from 'react';
+import { FaFacebookF, FaYoutube, FaImage, FaInstagram, FaCode } from 'react-icons/fa'; // Importei FaInstagram e FaCode
 
 const Servicos = () => {
-  const servicos = [
-    { nome: 'Social Media', cor: 'bg-blue-500', icone: 'fa-share-alt' }, // Exemplo de ícone Font Awesome
-    { nome: 'Vídeos', cor: 'bg-purple-500', icone: 'fa-play' },
-    { nome: 'Flyers', cor: 'bg-pink-500', icone: 'fa-file-image' },
-    { nome: 'Branding', cor: 'bg-indigo-500', icone: 'fa-palette' },
-  ];
-
   return (
-    <section className="bg-black text-white py-16 md:py-24">
+    <section className="bg-preto-profundo text-branco-neutro py-16 md:py-24">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
-        <h2 className="text-2xl md:text-3xl font-semibold mb-8 text-primary">SERVIÇOS</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {servicos.map((servico, index) => (
-            <div key={index} className={`rounded-lg p-6 ${servico.cor} shadow-md`}>
-              <div className="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center mb-4">
-                {/* Adicione seu ícone aqui (pode ser um componente separado) */}
-                <i className={`fas ${servico.icone}`}></i> {/* Exemplo com Font Awesome */}
-              </div>
-              <h3 className="text-lg font-semibold">{servico.nome}</h3>
-            </div>
-          ))}
+        <h2 className="text-2xl md:text-3xl font-semibold mb-8 text-azul-principal">SERVIÇOS</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 justify-center"> {/* Mantenho justify-center */}
+          {/* Serviço 1: Social Media */}
+          <div className="bg-azul-tech rounded-lg p-6 flex flex-col items-center justify-center max-w-xs"> {/* Mantenho max-w-xs */}
+            <FaInstagram className="text-white text-3xl mb-2" /> {/* Substituí FaFacebookF por FaInstagram */}
+            <h3 className="text-sm md:text-lg font-semibold text-center">Social Media</h3>
+          </div>
+
+          {/* Serviço 2: Vídeos */}
+          <div className="bg-roxo-futurista rounded-lg p-6 flex flex-col items-center justify-center max-w-xs"> {/* Mantenho max-w-xs */}
+            <FaYoutube className="text-white text-3xl mb-2" />
+            <h3 className="text-sm md:text-lg font-semibold text-center">Vídeos</h3>
+          </div>
+
+          {/* Serviço 3: Flyers */}
+          <div className="bg-rosa-medio rounded-lg p-6 flex flex-col items-center justify-center max-w-xs"> {/* Mantenho max-w-xs */}
+            <FaImage className="text-white text-3xl mb-2" />
+            <h3 className="text-sm md:text-lg font-semibold text-center">Flyers</h3>
+          </div>
+
+          {/* Serviço 4: Branding */}
+          <div className="bg-roxo-futurista rounded-lg p-6 flex flex-col items-center justify-center max-w-xs"> {/* Mantenho max-w-xs */}
+            <FaCode className="text-white text-3xl mb-2" /> {/* Substituí FaPaintBrush por FaCode */}
+            <h3 className="text-sm md:text-lg font-semibold text-center">Sites</h3> {/* Substituí Branding por Sites */}
+          </div>
         </div>
       </div>
     </section>
