@@ -9,24 +9,20 @@ const Servicos = () => {
           Serviços
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8"> {/* Aumentei o gap */}
-          {/* Serviço 1: Social Media */}
           <div className="bg-azul-tech rounded-lg p-8 flex flex-col items-center justify-center"> {/* Aumentei o padding */}
             <FaInstagram className="text-white text-5xl mb-4" /> {/* Ícone maior e margem abaixo */}
             <h3 className="text-lg md:text-xl font-semibold text-center">Social Media</h3> {/* Texto maior */}
           </div>
-
+ 
           <div className="bg-roxo-futurista rounded-lg p-8 flex flex-col items-center justify-center"> {/* Aumentei o padding */}
             <FaYoutube className="text-white text-5xl mb-4" /> {/* Ícone maior e margem abaixo */}
             <h3 className="text-lg md:text-xl font-semibold text-center">Vídeos</h3> {/* Texto maior */}
           </div>
-
-          {/* Serviço 3: Flyers */}
           <div className="bg-rosa-medio rounded-lg p-8 flex flex-col items-center justify-center"> {/* Aumentei o padding */}
             <FaImage className="text-white text-5xl mb-4" /> {/* Ícone maior e margem abaixo */}
             <h3 className="text-lg md:text-xl font-semibold text-center">Flyers</h3> {/* Texto maior */}
           </div>
 
-          {/* Serviço 4: Branding (agora Sites) */}
           <div className="bg-roxo-futurista rounded-lg p-8 flex flex-col items-center justify-center"> {/* Aumentei o padding */}
             <FaCode className="text-white text-5xl mb-4" /> {/* Ícone maior e margem abaixo */}
             <h3 className="text-lg md:text-xl font-semibold text-center">Sites</h3> {/* Texto maior */}
