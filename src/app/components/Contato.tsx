@@ -1,4 +1,4 @@
-
+// components/Contato.js
 import React from 'react';
 
 const Contato = () => {

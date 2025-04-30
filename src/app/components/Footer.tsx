@@ -4,20 +4,19 @@ import { Instagram, Linkedin, Youtube } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-gray-700 py-8 px-4 bg-black text-white">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+    <footer className="bg-preto-profundo text-white border-t border-gray-700 py-10 px-4">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 text-center md:text-left">
+
         {/* Logo + Frase */}
-        <div className="flex flex-col items-center w-full">
+        <div className="flex flex-col items-center md:items-start">
           <Image
             src="/logo1.png"
             alt="Logo Impacto360"
-            width={120}
-            height={120}
+            width={100}
+            height={100}
             className="mb-2"
           />
-          <p className="text-sm text-gray-400 text-center">
-            Transformando ideias em resultados.
-          </p>
+          <p className="text-sm text-gray-400">Transformando ideias em resultados.</p>
         </div>
 
         {/* Navegação */}
@@ -31,11 +30,11 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Redes sociais */}
+        {/* Redes Sociais */}
         <div className="flex flex-col items-center md:items-start">
           <h3 className="text-lg font-semibold mb-2">Siga nas redes</h3>
-          <div className="flex space-x-4 text-white">
-            <a href="https://www.instagram.com/_impacto360_/?igsh=cWptZ2txMmtkNXE4#" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <div className="flex space-x-4">
+            <a href="https://www.instagram.com/_impacto360_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
               <Instagram className="w-5 h-5 hover:text-pink-500 transition" />
             </a>
             <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
@@ -48,8 +47,8 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Direitos reservados */}
-      <div className="mt-6 text-center text-xs text-gray-500">
+      {/* Direitos Reservados */}
+      <div className="mt-8 text-center text-xs text-gray-500">
         © 2025 Impacto360. Todos os direitos reservados.
       </div>
     </footer>

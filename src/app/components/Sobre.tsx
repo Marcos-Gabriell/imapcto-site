@@ -4,16 +4,11 @@ import { Rocket, TrendingUp, Lightbulb } from 'lucide-react';
 const Sobre = () => {
   return (
     <section className="bg-preto-profundo text-branco-neutro py-16 md:py-24 lg:py-36 relative overflow-hidden">
-      {/* Fundo preto liso */}
       <div className="absolute top-0 left-0 w-full h-full bg-preto-profundo z-0"></div>
-
       <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10 flex flex-col items-center">
-        {/* Título "SOBRE" */}
         <h2 className="text-4xl md:text-5xl font-extrabold mb-10 text-azul-principal text-left w-full">
           SOBRE
         </h2>
-
-        {/* Logo e Frase de Impacto */}
         <div className="flex flex-col items-center mb-10">
           <div className="w-52 h-52 mb-4">
             <img
