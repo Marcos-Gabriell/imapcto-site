@@ -11,7 +11,7 @@ module.exports = {
       colors: {
         'azul-principal': '#3490dc',
         'cinza-claro': '#f7f7f7',
-        'preto-profundo': '#0D0D0D',
+        'preto-profundo': '#000000',
         'branco-neutro': '#FFFFFF',
         'roxo-futurista': '#7F00FF',
         'azul-tech': '#007bff', // Adicione a cor azul tech aqui

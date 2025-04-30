@@ -33,27 +33,27 @@ const FAQ = () => {
   ];
 
   return (
-    <section className="bg-preto-profundo text-branco-neutro py-16 md:py-24 px-4 md:px-6 lg:px-8">
-      <h2 className="text-4xl md:text-5xl font-extrabold mb-10 text-azul-principal text-center drop-shadow-lg">
+    <section className="bg-preto-profundo text-branco-neutro py-12 md:py-20 px-4 md:px-8">
+      <h2 className="text-3xl md:text-5xl font-extrabold mb-10 text-azul-principal text-center">
         Perguntas Frequentes
       </h2>
-      <div className="max-w-3xl mx-auto space-y-4">
+      <div className="max-w-3xl mx-auto space-y-3 md:space-y-4">
         {faqs.map((faq, index) => (
           <div
             key={index}
             onClick={() => toggle(index)}
             onKeyDown={(e) => e.key === 'Enter' && toggle(index)}
             tabIndex={0}
-            className={`bg-gray-900 rounded-xl shadow-md p-6 cursor-pointer transition-all duration-300 focus:outline focus:ring-2 focus:ring-fuchsia-500 ${
+            className={`bg-gray-900 rounded-xl p-4 md:p-6 cursor-pointer transition-all duration-300 focus:outline focus:ring-2 focus:ring-fuchsia-500 ${
               openIndex === index ? 'ring-2 ring-fuchsia-500 bg-gray-800' : ''
             }`}
           >
             <div className="flex justify-between items-center">
-              <h3 className="text-lg font-semibold text-fuchsia-500">
+              <h3 className="text-base md:text-lg font-semibold text-fuchsia-500">
                 {faq.question}
               </h3>
               <span
-                className={`transform transition-transform duration-300 text-fuchsia-400 ${
+                className={`text-fuchsia-400 transform transition-transform duration-300 ${
                   openIndex === index ? 'rotate-180' : ''
                 }`}
               >
