@@ -15,7 +15,6 @@ const Servicos = () => {
             <h3 className="text-lg md:text-xl font-semibold text-center">Social Media</h3> {/* Texto maior */}
           </div>
 
-          {/* Serviço 2: Vídeos */}
           <div className="bg-roxo-futurista rounded-lg p-8 flex flex-col items-center justify-center"> {/* Aumentei o padding */}
             <FaYoutube className="text-white text-5xl mb-4" /> {/* Ícone maior e margem abaixo */}
             <h3 className="text-lg md:text-xl font-semibold text-center">Vídeos</h3> {/* Texto maior */}

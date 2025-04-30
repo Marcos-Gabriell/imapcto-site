@@ -30,7 +30,7 @@ const Contato = () => {
             </div>
             <button
               type="submit"
-              className="bg-gradient-to-r from-pink-600 to-purple-600 text-white font-bold py-4 px-8 rounded-full hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg w-full" // Botão arredondado e gradiente rosa-roxo
+              className="bg-gradient-to-r from-pink-600 to-purple-600 text-white font-bold py-4 px-8 rounded-full hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg w-full hover:from-roxo-futurista hover:to-roxo-futurista" // Botão arredondado e gradiente rosa-roxo
             >
               ENVIAR
             </button>

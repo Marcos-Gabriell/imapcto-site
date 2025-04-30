@@ -3,10 +3,8 @@ import React from 'react';
 const Hero = () => {
   return (
     <section className="bg-preto-profundo text-branco-neutro py-16 md:py-24 lg:py-36 relative overflow-hidden min-h-screen">
-      {/* Fundo preto profundo */}
       <div className="absolute top-0 left-0 w-full h-full bg-preto-profundo z-0"></div>
       <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10 flex flex-col md:flex-row items-center md:justify-around">
-        {/* Coluna do Texto e Botão */}
         <div className="text-center md:text-left max-w-xl md:order-1">
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-6 leading-tight">
             INOVAÇÃO<br />
@@ -19,11 +17,11 @@ const Hero = () => {
             FALE CONOSCO
           </button>
         </div>
+        <div className="w-[35rem] max-w-full h-auto mb-8 md:mb-0 md:order-2 md:ml-0 flex justify-center items-center">
+  <img src="/logo1.png" alt="Logo Impacto 360" className="w-full h-auto object-contain" />
+</div>
 
-        {/* Logo "IMPACTO 360" (como imagem) */}
-        <div className="w-72 md:w-96 h-auto mb-8 md:mb-0 md:order-2 md:ml-12 lg:ml-32">
-          <img src="/logo.png" alt="Logo Impacto 360" className="w-full h-full object-contain" />
-        </div>
+
       </div>
     </section>
   );
