@@ -1,11 +1,9 @@
 import Image from "next/image";
-import Link from "next/link";
 import { Instagram, Linkedin, Youtube } from "lucide-react";
 
 export default function Footer() {
   return (
     <footer className="bg-black text-white border-t border-gray-700 py-10 px-4">
-      {/* Mobile: Apenas redes sociais */}
       <div className="block md:hidden text-center">
         <h3 className="text-lg font-semibold mb-4">Siga nas redes</h3>
         <div className="flex justify-center space-x-6 mb-4">
@@ -21,10 +19,7 @@ export default function Footer() {
         </div>
         <p className="text-xs text-gray-500">© 2025 Impacto360. Todos os direitos reservados.</p>
       </div>
-
-      {/* Desktop: Layout principal */}
       <div className="hidden md:flex justify-center md:justify-between items-start gap-6 max-w-6xl mx-auto">
-        {/* Logo e nome */}
         <div className="flex flex-col items-center md:items-start text-center md:text-left">
           <Image
             src="/logo1.png"
@@ -38,21 +33,16 @@ export default function Footer() {
           </h2>
           <p className="text-sm text-gray-400">Transformando ideias em resultados.</p>
         </div>
-
-        {/* Navegação */}
         <div className="flex flex-col items-start">
           <h3 className="text-lg font-semibold mb-2">Navegação</h3>
           <ul className="space-y-1 text-sm text-gray-300">
-  <li><a href="#home" className="hover:underline">Início</a></li>
-  <li><a href="#sobre" className="hover:underline">Sobre</a></li>
-  <li><a href="#servicos" className="hover:underline">Serviços</a></li>
-  <li><a href="#projetos" className="hover:underline">Projetos</a></li>
-  <li><a href="#contato" className="hover:underline">Contato</a></li>
-</ul>
-
+            <li><a href="#home" className="hover:underline">Início</a></li>
+            <li><a href="#sobre" className="hover:underline">Sobre</a></li>
+            <li><a href="#servicos" className="hover:underline">Serviços</a></li>
+            <li><a href="#projetos" className="hover:underline">Projetos</a></li>
+            <li><a href="#contato" className="hover:underline">Contato</a></li>
+          </ul>
         </div>
-
-        {/* Redes Sociais */}
         <div className="flex flex-col items-start">
           <h3 className="text-lg font-semibold mb-2">Siga nas redes</h3>
           <div className="flex space-x-4">
