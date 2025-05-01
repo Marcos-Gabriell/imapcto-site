@@ -16,19 +16,23 @@ const FAQ = () => {
     },
     {
       question: 'Por que investir em marketing é essencial?',
-      answer: 'O marketing conecta sua marca ao público certo, gera valor, aumenta visibilidade e impulsiona vendas de forma estratégica e mensurável.',
+      answer:
+        'O marketing conecta sua marca ao público certo, gera valor, aumenta visibilidade e impulsiona vendas de forma estratégica e mensurável.',
     },
     {
       question: 'Como a comunicação influencia no sucesso da marca?',
-      answer: 'Uma comunicação clara, criativa e consistente constrói confiança, fortalece identidade e diferencia sua marca da concorrência.',
+      answer:
+        'Uma comunicação clara, criativa e consistente constrói confiança, fortalece identidade e diferencia sua marca da concorrência.',
     },
     {
       question: 'Como a tecnologia pode potencializar o marketing?',
-      answer: 'Utilizamos ferramentas modernas para automação, análise de dados, segmentação e criação de experiências mais relevantes e eficazes.',
+      answer:
+        'Utilizamos ferramentas modernas para automação, análise de dados, segmentação e criação de experiências mais relevantes e eficazes.',
     },
     {
       question: 'A Impacto360 é indicada para empresas iniciantes?',
-      answer: 'Com certeza. Nosso trabalho é adaptar soluções conforme o estágio da empresa, criando estratégias acessíveis e de alto impacto.',
+      answer:
+        'Com certeza. Nosso trabalho é adaptar soluções conforme o estágio da empresa, criando estratégias acessíveis e de alto impacto.',
     },
   ];
 
@@ -44,7 +48,7 @@ const FAQ = () => {
             onClick={() => toggle(index)}
             onKeyDown={(e) => e.key === 'Enter' && toggle(index)}
             tabIndex={0}
-            className={`bg-gray-900 rounded-xl p-4 md:p-6 cursor-pointer transition-all duration-300 focus:outline focus:ring-2 focus:ring-fuchsia-500 ${
+            className={`bg-gray-900 rounded-xl p-4 md:p-6 cursor-pointer transition-all duration-300 mx-auto w-full max-w-xs md:max-w-none focus:outline focus:ring-2 focus:ring-fuchsia-500 ${
               openIndex === index ? 'ring-2 ring-fuchsia-500 bg-gray-800' : ''
             }`}
           >
