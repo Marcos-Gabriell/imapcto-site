@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Instagram, Linkedin, Youtube } from "lucide-react";
 
+
 export default function Footer() {
   return (
     <footer className="bg-black text-white border-t border-gray-700 py-10 px-4">
