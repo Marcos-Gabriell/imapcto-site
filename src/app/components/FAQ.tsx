@@ -48,16 +48,16 @@ const FAQ = () => {
             onClick={() => toggle(index)}
             onKeyDown={(e) => e.key === 'Enter' && toggle(index)}
             tabIndex={0}
-            className={`bg-gray-900 rounded-xl p-4 md:p-6 cursor-pointer transition-all duration-300 mx-auto w-full max-w-xs md:max-w-none focus:outline focus:ring-2 focus:ring-fuchsia-500 ${
-              openIndex === index ? 'ring-2 ring-fuchsia-500 bg-gray-800' : ''
+            className={`bg-gray-900 rounded-xl p-4 md:p-6 cursor-pointer transition-all duration-300 mx-auto w-full max-w-xs md:max-w-none focus:outline focus:ring-2 focus:ring-azul-principal ${
+              openIndex === index ? 'ring-2 ring-azul-principal bg-gray-800' : ''
             }`}
           >
             <div className="flex justify-between items-center">
-              <h3 className="text-base md:text-lg font-semibold text-fuchsia-500">
+              <h3 className="text-base md:text-lg font-semibold text-azul-principal">
                 {faq.question}
               </h3>
               <span
-                className={`text-fuchsia-400 transform transition-transform duration-300 ${
+                className={`text-azul-principal transform transition-transform duration-300 ${
                   openIndex === index ? 'rotate-180' : ''
                 }`}
               >
