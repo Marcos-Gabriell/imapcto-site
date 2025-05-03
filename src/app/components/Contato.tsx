@@ -1,28 +1,18 @@
 "use client";
 
-import React, { useState, FormEvent, useRef } from "react";
-import ReCAPTCHA from "react-google-recaptcha";
+import React, { useState, FormEvent } from "react";
 
 const Contato = () => {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [recaptchaToken, setRecaptchaToken] = useState("");
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState<null | "success" | "error">(null);
-
-  const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     setStatus(null);
-
-    if (!recaptchaToken) {
-      setStatus("error");
-      setLoading(false);
-      return;
-    }
 
     try {
       const response = await fetch(
@@ -30,7 +20,7 @@ const Contato = () => {
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ nome, email, phone, token: recaptchaToken }),
+          body: JSON.stringify({ nome, email, phone }),
         }
       );
 
@@ -39,8 +29,6 @@ const Contato = () => {
         setNome("");
         setEmail("");
         setPhone("");
-        setRecaptchaToken("");
-        recaptchaRef.current?.reset();
       } else {
         setStatus("error");
       }
@@ -100,15 +88,6 @@ const Contato = () => {
               placeholder="(XX) XXXXX-XXXX"
             />
           </div>
-
-          {/* reCAPTCHA visível */}
-          <ReCAPTCHA
-            ref={recaptchaRef}
-            sitekey="6LfTLy0rAAAAAOSefNgYHBx1VBhgQO9mEu-tOqrB"
-            size="normal"
-            onChange={(token) => setRecaptchaToken(token || "")}
-          />
-
           <button
             type="submit"
             disabled={loading}
