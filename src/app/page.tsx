@@ -5,6 +5,7 @@ import Servicos from '@/app/components/Servicos';
 import FAQ from '@/app/components/FAQ';
 import Contato from '@/app/components/Contato';
 import Footer from '@/app/components/Footer';
+import FeedbackButton from '@/app/components/FeedbackButton'
 
 export default function Home() {
   return (
@@ -29,8 +30,8 @@ export default function Home() {
       <Contato />
     </section>
   </div>
-
   <Footer />
+  <FeedbackButton />
 </main>
 
   );
