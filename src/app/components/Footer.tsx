@@ -13,7 +13,6 @@ export default function Footer() {
   return (
     <>
       <footer className="bg-black text-white border-t border-gray-700 py-10 px-4">
-        {/* Versão mobile */}
         <div className="block md:hidden text-center">
           <h3 className="text-lg font-semibold mb-4">Siga nas redes</h3>
           <div className="flex justify-center space-x-6 mb-4">
@@ -27,20 +26,15 @@ export default function Footer() {
               <Youtube className="w-5 h-5 hover:text-red-500 transition" />
             </a>
           </div>
-
           <button
             onClick={() => setIsFeedbackOpen(true)}
             className="mt-4 text-sm text-gray-300 hover:text-purple-400 transition underline"
           >
             Queremos o seu Feedback &gt;
           </button>
-
           <p className="text-xs text-gray-500 mt-4">© 2025 Impacto360. Todos os direitos reservados.</p>
         </div>
-
-        {/* Versão desktop/tablet */}
         <div className="hidden md:flex justify-center md:justify-between items-start gap-6 max-w-6xl mx-auto">
-          {/* Logo e descrição */}
           <div className="flex flex-col items-center md:items-start text-center md:text-left">
             <Image
               src="/logo1.png"
@@ -54,8 +48,6 @@ export default function Footer() {
             </h2>
             <p className="text-sm text-gray-400">Transformando ideias em resultados.</p>
           </div>
-
-          {/* Navegação */}
           <div className="flex flex-col items-start">
             <h3 className="text-lg font-semibold mb-2">Navegação</h3>
             <ul className="space-y-1 text-sm text-gray-300">
@@ -66,8 +58,6 @@ export default function Footer() {
               <li><a href="#contato" className="hover:underline">Contato</a></li>
             </ul>
           </div>
-
-          {/* Redes sociais + botão feedback */}
           <div className="flex flex-col items-start">
             <h3 className="text-lg font-semibold mb-2">Siga nas redes</h3>
             <div className="flex space-x-4 mb-4">
@@ -81,7 +71,6 @@ export default function Footer() {
                 <Youtube className="w-5 h-5 hover:text-red-500 transition" />
               </a>
             </div>
-
             <button
               onClick={() => setIsFeedbackOpen(true)}
               className="text-sm text-gray-300 hover:text-purple-400 transition underline"
@@ -90,14 +79,10 @@ export default function Footer() {
             </button>
           </div>
         </div>
-
-        {/* Direitos reservados */}
         <div className="hidden md:block w-full text-center mt-12 text-gray-500 text-xs">
           © 2025 Impacto360. Todos os direitos reservados.
         </div>
       </footer>
-
-      {/* ⬇️ FORA do footer = FUNCIONA */}
       <FeedbackModal
         isOpen={isFeedbackOpen}
         onClose={() => setIsFeedbackOpen(false)}
@@ -106,7 +91,6 @@ export default function Footer() {
           setIsContatoOpen(true);
         }}
       />
-
       <ContatoModal
         isOpen={isContatoOpen}
         onClose={() => setIsContatoOpen(false)}

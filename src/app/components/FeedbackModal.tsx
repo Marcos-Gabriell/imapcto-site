@@ -1,4 +1,7 @@
-import { X, ArrowRight } from 'lucide-react';
+'use client';
+
+import { useState, FormEvent } from 'react';
+import { X, ArrowRight, Mail, User } from 'lucide-react';
 import Image from 'next/image';
 
 export default function FeedbackModal({
@@ -10,6 +13,42 @@ export default function FeedbackModal({
   onClose: () => void;
   onRedirectContato: () => void;
 }) {
+  const [nome, setNome] = useState('');
+  const [email, setEmail] = useState('');
+  const [mensagem, setMensagem] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState<null | 'success' | 'error'>(null);
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    setStatus(null);
+
+    try {
+      const response = await fetch(
+        'https://envio-de-email-portifolio.onrender.com/feedback-email',
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nome, email, mensagem }),
+        }
+      );
+
+      if (response.ok) {
+        setStatus('success');
+        setNome('');
+        setEmail('');
+        setMensagem('');
+      } else {
+        setStatus('error');
+      }
+    } catch {
+      setStatus('error');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   if (!isOpen) return null;
 
   return (
@@ -32,22 +71,68 @@ export default function FeedbackModal({
         </p>
 
         {/* Formulário */}
-        <form className="space-y-4 text-sm">
-          <input
-            type="email"
-            placeholder="Digite seu e-mail"
-            className="w-full p-3 rounded-lg bg-[#1f1f1f] text-white placeholder-gray-400 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
-          />
+        <form onSubmit={handleSubmit} className="space-y-4 text-sm">
+          {/* Nome */}
+          <div className="flex items-center gap-2 bg-[#1f1f1f] border border-gray-700 rounded-lg px-3 py-3">
+            <User className="text-purple-400 w-5 h-5" />
+            <input
+              type="text"
+              placeholder="Seu nome"
+              value={nome}
+              onChange={(e) => setNome(e.target.value)}
+              required
+              className="bg-transparent outline-none w-full placeholder-gray-400 text-white text-sm"
+            />
+          </div>
+
+          {/* E-mail */}
+          <div className="flex items-center gap-2 bg-[#1f1f1f] border border-gray-700 rounded-lg px-3 py-3">
+            <Mail className="text-purple-400 w-5 h-5" />
+            <input
+              type="email"
+              placeholder="Seu e-mail"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="bg-transparent outline-none w-full placeholder-gray-400 text-white text-sm"
+            />
+          </div>
+
+          {/* Feedback */}
           <textarea
             placeholder="Escreva seu feedback, sugestão ou problema"
+            value={mensagem}
+            onChange={(e) => setMensagem(e.target.value)}
+            required
             className="w-full p-3 h-28 rounded-lg bg-[#1f1f1f] text-white placeholder-gray-400 border border-gray-700 resize-none focus:outline-none focus:ring-2 focus:ring-purple-500"
-          ></textarea>
+          />
+
+          {/* Botão */}
           <button
             type="submit"
-            className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-pink-500 py-3 rounded-xl text-white font-semibold hover:opacity-90 transition"
+            disabled={loading}
+            className={`w-full flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-pink-500 py-3 rounded-xl text-white font-semibold hover:opacity-90 transition ${
+              loading ? 'opacity-50 cursor-not-allowed' : ''
+            }`}
           >
-            ENVIAR <ArrowRight size={18} />
+            {loading ? 'Enviando...' : (
+              <>
+                ENVIAR <ArrowRight size={18} />
+              </>
+            )}
           </button>
+
+          {/* Feedback visual */}
+          {status === 'success' && (
+            <p className="text-green-400 text-center text-sm mt-2">
+              Feedback enviado com sucesso!
+            </p>
+          )}
+          {status === 'error' && (
+            <p className="text-red-400 text-center text-sm mt-2">
+              Erro ao enviar. Tente novamente.
+            </p>
+          )}
         </form>
 
         {/* Rodapé */}

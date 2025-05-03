@@ -24,10 +24,8 @@ export default function FeedbackButton() {
 
   return (
     <>
-      {/* Oculta em telas menores que md */}
       <div className="hidden md:fixed md:right-0 md:top-1/2 md:transform md:-translate-y-1/2 md:z-50 md:flex md:items-center">
         <div className="relative flex items-center">
-          {/* Botão de feedback */}
           <button
             onClick={() => setIsFeedbackOpen(true)}
             className="bg-purple-600 hover:bg-purple-700 text-white px-3 py-2 rounded-l-3xl flex items-center gap-2 transform -rotate-90 origin-bottom-right shadow-xl"
@@ -46,7 +44,6 @@ export default function FeedbackButton() {
           </button>
         </div>
       </div>
-
       <FeedbackModal
         isOpen={isFeedbackOpen}
         onClose={() => setIsFeedbackOpen(false)}
@@ -55,7 +52,6 @@ export default function FeedbackButton() {
           setIsContatoOpen(true);
         }}
       />
-
       <ContatoModal
         isOpen={isContatoOpen}
         onClose={() => setIsContatoOpen(false)}
