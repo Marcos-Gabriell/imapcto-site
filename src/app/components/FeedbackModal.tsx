@@ -52,29 +52,33 @@ export default function FeedbackModal({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/60 flex justify-center items-center z-50 px-4">
-      <div className="bg-[#111111] text-white rounded-2xl p-6 sm:p-8 w-full max-w-md shadow-2xl relative">
+    <div className="fixed inset-0 bg-black/60 flex justify-center items-center z-50 px-2">
+      <div className="bg-[#111111] text-white rounded-2xl p-5 w-full max-w-sm sm:max-w-md shadow-2xl relative max-h-[90vh] overflow-y-auto">
         {/* Botão de fechar */}
-        <button onClick={onClose} className="absolute top-4 right-4 hover:text-gray-400">
-          <X size={24} />
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 hover:text-gray-400"
+        >
+          <X size={20} />
         </button>
 
         {/* Logo */}
-        <div className="mb-4">
-          <Image src="/logo1.png" alt="Logo" width={40} height={40} />
+        <div className="mb-3">
+          <Image src="/logo1.png" alt="Logo" width={30} height={30} />
         </div>
 
         {/* Título */}
-        <h2 className="text-lg sm:text-xl font-semibold">Como está sendo sua experiência no site?</h2>
-        <p className="text-sm text-gray-400 mb-5">
+        <h2 className="text-base font-semibold leading-snug">
+          Como está sendo sua experiência no site?
+        </h2>
+        <p className="text-xs text-gray-400 mb-4">
           Seu feedback é muito importante para continuarmos evoluindo.
         </p>
 
         {/* Formulário */}
-        <form onSubmit={handleSubmit} className="space-y-4 text-sm">
-          {/* Nome */}
-          <div className="flex items-center gap-2 bg-[#1f1f1f] border border-gray-700 rounded-lg px-3 py-3">
-            <User className="text-purple-400 w-5 h-5" />
+        <form onSubmit={handleSubmit} className="space-y-3 text-sm">
+          <div className="flex items-center gap-2 bg-[#1f1f1f] border border-gray-700 rounded-md px-3 py-2">
+            <User className="text-purple-400 w-4 h-4" />
             <input
               type="text"
               placeholder="Seu nome"
@@ -85,9 +89,8 @@ export default function FeedbackModal({
             />
           </div>
 
-          {/* E-mail */}
-          <div className="flex items-center gap-2 bg-[#1f1f1f] border border-gray-700 rounded-lg px-3 py-3">
-            <Mail className="text-purple-400 w-5 h-5" />
+          <div className="flex items-center gap-2 bg-[#1f1f1f] border border-gray-700 rounded-md px-3 py-2">
+            <Mail className="text-purple-400 w-4 h-4" />
             <input
               type="email"
               placeholder="Seu e-mail"
@@ -98,45 +101,42 @@ export default function FeedbackModal({
             />
           </div>
 
-          {/* Feedback */}
           <textarea
             placeholder="Escreva seu feedback, sugestão ou problema"
             value={mensagem}
             onChange={(e) => setMensagem(e.target.value)}
             required
-            className="w-full p-3 h-28 rounded-lg bg-[#1f1f1f] text-white placeholder-gray-400 border border-gray-700 resize-none focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="w-full p-2 min-h-[5rem] max-h-[10rem] rounded-md bg-[#1f1f1f] text-white placeholder-gray-400 border border-gray-700 resize-none focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm"
           />
 
-          {/* Botão */}
           <button
             type="submit"
             disabled={loading}
-            className={`w-full flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-pink-500 py-3 rounded-xl text-white font-semibold hover:opacity-90 transition ${
+            className={`w-full flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-pink-500 py-2.5 rounded-md text-white font-medium hover:opacity-90 transition ${
               loading ? 'opacity-50 cursor-not-allowed' : ''
             }`}
           >
             {loading ? 'Enviando...' : (
               <>
-                ENVIAR <ArrowRight size={18} />
+                ENVIAR <ArrowRight size={16} />
               </>
             )}
           </button>
 
-          {/* Feedback visual */}
           {status === 'success' && (
-            <p className="text-green-400 text-center text-sm mt-2">
+            <p className="text-green-400 text-center text-sm mt-1">
               Feedback enviado com sucesso!
             </p>
           )}
           {status === 'error' && (
-            <p className="text-red-400 text-center text-sm mt-2">
+            <p className="text-red-400 text-center text-sm mt-1">
               Erro ao enviar. Tente novamente.
             </p>
           )}
         </form>
 
         {/* Rodapé */}
-        <p className="text-xs text-gray-500 text-center mt-4">
+        <p className="text-[10px] text-gray-500 text-center mt-3">
           Precisa de ajuda?{' '}
           <button
             type="button"
