@@ -13,6 +13,7 @@ export default function Footer() {
   return (
     <>
       <footer className="bg-black text-white border-t border-gray-700 py-10 px-4">
+        {/* Mobile Layout */}
         <div className="block md:hidden text-center">
           <h3 className="text-lg font-semibold mb-4">Siga nas redes</h3>
           <div className="flex justify-center space-x-6 mb-4">
@@ -34,7 +35,9 @@ export default function Footer() {
           </button>
           <p className="text-xs text-gray-500 mt-4">© 2025 Impacto360. Todos os direitos reservados.</p>
         </div>
-        <div className="hidden md:flex justify-center md:justify-between items-start gap-6 max-w-6xl mx-auto">
+
+        {/* Desktop Layout */}
+        <div className="hidden md:flex flex-wrap justify-center md:justify-between items-start gap-6 container mx-auto px-4">
           <div className="flex flex-col items-center md:items-start text-center md:text-left">
             <Image
               src="/logo1.png"
@@ -48,6 +51,7 @@ export default function Footer() {
             </h2>
             <p className="text-sm text-gray-400">Transformando ideias em resultados.</p>
           </div>
+
           <div className="flex flex-col items-start">
             <h3 className="text-lg font-semibold mb-2">Navegação</h3>
             <ul className="space-y-1 text-sm text-gray-300">
@@ -58,6 +62,7 @@ export default function Footer() {
               <li><a href="#contato" className="hover:underline">Contato</a></li>
             </ul>
           </div>
+
           <div className="flex flex-col items-start">
             <h3 className="text-lg font-semibold mb-2">Siga nas redes</h3>
             <div className="flex space-x-4 mb-4">
@@ -79,10 +84,14 @@ export default function Footer() {
             </button>
           </div>
         </div>
+
+        {/* Copyright Desktop */}
         <div className="hidden md:block w-full text-center mt-12 text-gray-500 text-xs">
           © 2025 Impacto360. Todos os direitos reservados.
         </div>
       </footer>
+
+      {/* Modals */}
       <FeedbackModal
         isOpen={isFeedbackOpen}
         onClose={() => setIsFeedbackOpen(false)}
