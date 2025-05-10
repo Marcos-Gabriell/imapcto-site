@@ -18,11 +18,32 @@ export default function FeedbackModal({
   const [mensagem, setMensagem] = useState('');
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState<null | 'success' | 'error'>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     setStatus(null);
+    setErrorMessage(null);
+
+    if (nome.length < 3 || nome.length > 15) {
+      setErrorMessage('O nome deve ter entre 3 e 15 caracteres.');
+      setLoading(false);
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setErrorMessage('Por favor, insira um e-mail válido.');
+      setLoading(false);
+      return;
+    }
+
+    if (mensagem.length < 5 || mensagem.length > 200) {
+      setErrorMessage('A mensagem deve ter entre 5 e 200 caracteres.');
+      setLoading(false);
+      return;
+    }
 
     try {
       const response = await fetch(
@@ -64,7 +85,7 @@ export default function FeedbackModal({
 
         {/* Logo */}
         <div className="mb-3">
-          <Image src="/logo1.png" alt="Logo" width={30} height={30} />
+          <Image src="/logo1.png" alt="Logo" width={60} height={60} />
         </div>
 
         {/* Título */}
@@ -104,7 +125,12 @@ export default function FeedbackModal({
           <textarea
             placeholder="Escreva seu feedback, sugestão ou problema"
             value={mensagem}
-            onChange={(e) => setMensagem(e.target.value)}
+            onChange={(e) => {
+              if (e.target.value.length <= 200) {
+                setMensagem(e.target.value);
+              }
+            }}
+            maxLength={200}
             required
             className="w-full p-2 min-h-[5rem] max-h-[10rem] rounded-md bg-[#1f1f1f] text-white placeholder-gray-400 border border-gray-700 resize-none focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm"
           />
@@ -123,6 +149,9 @@ export default function FeedbackModal({
             )}
           </button>
 
+          {errorMessage && (
+            <p className="text-red-400 text-center text-sm mt-1">{errorMessage}</p>
+          )}
           {status === 'success' && (
             <p className="text-green-400 text-center text-sm mt-1">
               Feedback enviado com sucesso!
@@ -136,7 +165,7 @@ export default function FeedbackModal({
         </form>
 
         {/* Rodapé */}
-        <p className="text-[10px] text-gray-500 text-center mt-3">
+        <p className="text-[15px] text-gray-500 text-center mt-3">
           Precisa de ajuda?{' '}
           <button
             type="button"

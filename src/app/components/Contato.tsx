@@ -8,11 +8,47 @@ const Contato = () => {
   const [phone, setPhone] = useState("");
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState<null | "success" | "error">(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  const formatPhone = (value: string) => {
+    const cleaned = value.replace(/\D/g, "").slice(0, 11);
+    if (cleaned.length <= 2) return `(${cleaned}`;
+    if (cleaned.length <= 7) return `(${cleaned.slice(0, 2)}) ${cleaned.slice(2)}`;
+    return `(${cleaned.slice(0, 2)}) ${cleaned.slice(2, 7)}-${cleaned.slice(7)}`;
+  };
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const input = e.target.value;
+    setPhone(formatPhone(input));
+  };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     setStatus(null);
+    setErrorMessage(null);
+
+    const cleanedPhone = phone.replace(/\D/g, "");
+
+    // Validações
+    if (nome.length < 3 || nome.length > 15) {
+      setErrorMessage("O nome deve ter entre 3 e 15 caracteres.");
+      setLoading(false);
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setErrorMessage("Por favor, insira um e-mail válido.");
+      setLoading(false);
+      return;
+    }
+
+    if (cleanedPhone.length !== 11) {
+      setErrorMessage("O telefone deve conter 11 dígitos numéricos.");
+      setLoading(false);
+      return;
+    }
 
     try {
       const response = await fetch(
@@ -82,12 +118,13 @@ const Contato = () => {
               type="tel"
               id="phone"
               value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              onChange={handlePhoneChange}
               required
               className="appearance-none border border-gray-700 rounded-full w-full py-2.5 px-5 text-white bg-gray-900 leading-tight focus:outline-none focus:ring-2 focus:ring-azul-principal focus:border-transparent placeholder-gray-400 text-sm"
               placeholder="(XX) XXXXX-XXXX"
             />
           </div>
+
           <button
             type="submit"
             disabled={loading}
@@ -100,6 +137,9 @@ const Contato = () => {
             {loading ? "Enviando..." : "ENVIAR"}
           </button>
 
+          {errorMessage && (
+            <p className="text-red-400 text-center mt-4 text-sm">{errorMessage}</p>
+          )}
           {status === "success" && (
             <p className="text-green-400 text-center mt-4 text-sm">
               Mensagem enviada com sucesso!

@@ -16,11 +16,46 @@ export default function ContatoModal({
   const [phone, setPhone] = useState('');
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState<null | 'success' | 'error'>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  const formatPhone = (value: string) => {
+    const cleaned = value.replace(/\D/g, '').slice(0, 11);
+    if (cleaned.length <= 2) return `(${cleaned}`;
+    if (cleaned.length <= 7) return `(${cleaned.slice(0, 2)}) ${cleaned.slice(2)}`;
+    return `(${cleaned.slice(0, 2)}) ${cleaned.slice(2, 7)}-${cleaned.slice(7)}`;
+  };
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const input = e.target.value;
+    setPhone(formatPhone(input));
+  };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     setStatus(null);
+    setErrorMessage(null);
+
+    const cleanedPhone = phone.replace(/\D/g, '');
+
+    if (nome.length < 3 || nome.length > 15) {
+      setErrorMessage("O nome deve ter entre 3 e 15 caracteres.");
+      setLoading(false);
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setErrorMessage("Por favor, insira um e-mail válido.");
+      setLoading(false);
+      return;
+    }
+
+    if (cleanedPhone.length !== 11) {
+      setErrorMessage("O telefone deve conter 11 dígitos.");
+      setLoading(false);
+      return;
+    }
 
     try {
       const response = await fetch(
@@ -50,9 +85,8 @@ export default function ContatoModal({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/60 flex justify-center items-center z-50 px-4">
-      <div className="bg-[#111111] text-white rounded-2xl p-5 w-full max-w-sm shadow-2xl relative max-h-[90vh] overflow-y-auto">
-        {/* Botão de fechar */}
+    <div className="fixed inset-0 bg-black/60 flex justify-center items-center z-50 px-2">
+      <div className="bg-[#111111] text-white rounded-2xl p-5 w-full max-w-sm sm:max-w-md shadow-2xl relative max-h-[90vh] overflow-y-auto">
         <button
           onClick={onClose}
           className="absolute top-4 right-4 hover:text-gray-400"
@@ -60,12 +94,10 @@ export default function ContatoModal({
           <X size={20} />
         </button>
 
-        {/* Logo */}
         <div className="mb-3">
-          <Image src="/logo1.png" alt="Logo" width={30} height={30} />
+          <Image src="/logo1.png" alt="Logo" width={60} height={60} />
         </div>
 
-        {/* Título */}
         <h2 className="text-base font-semibold leading-snug">
           Deixe seu contato
         </h2>
@@ -73,9 +105,7 @@ export default function ContatoModal({
           Retornaremos o mais rápido possível.
         </p>
 
-        {/* Formulário */}
         <form onSubmit={handleSubmit} className="space-y-3 text-sm">
-          {/* Nome */}
           <div className="flex items-center gap-2 bg-[#1f1f1f] border border-gray-700 rounded-md px-3 py-2">
             <User className="text-purple-400 w-4 h-4" />
             <input
@@ -88,7 +118,6 @@ export default function ContatoModal({
             />
           </div>
 
-          {/* Email */}
           <div className="flex items-center gap-2 bg-[#1f1f1f] border border-gray-700 rounded-md px-3 py-2">
             <Mail className="text-purple-400 w-4 h-4" />
             <input
@@ -101,20 +130,18 @@ export default function ContatoModal({
             />
           </div>
 
-          {/* Telefone */}
           <div className="flex items-center gap-2 bg-[#1f1f1f] border border-gray-700 rounded-md px-3 py-2">
             <Phone className="text-purple-400 w-4 h-4" />
             <input
               type="tel"
               placeholder="(XX) XXXXX-XXXX"
               value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              onChange={handlePhoneChange}
               required
               className="bg-transparent outline-none w-full placeholder-gray-400 text-white text-sm"
             />
           </div>
 
-          {/* Botão */}
           <button
             type="submit"
             disabled={loading}
@@ -129,7 +156,9 @@ export default function ContatoModal({
             )}
           </button>
 
-          {/* Feedback */}
+          {errorMessage && (
+            <p className="text-red-400 text-center text-sm mt-1">{errorMessage}</p>
+          )}
           {status === 'success' && (
             <p className="text-green-400 text-center text-sm mt-1">
               Contato enviado com sucesso!
