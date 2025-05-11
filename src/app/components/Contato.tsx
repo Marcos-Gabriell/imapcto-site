@@ -13,13 +13,13 @@ const Contato = () => {
   const formatPhone = (value: string) => {
     const cleaned = value.replace(/\D/g, "").slice(0, 11);
     if (cleaned.length <= 2) return `(${cleaned}`;
-    if (cleaned.length <= 7) return `(${cleaned.slice(0, 2)}) ${cleaned.slice(2)}`;
+    if (cleaned.length <= 7)
+      return `(${cleaned.slice(0, 2)}) ${cleaned.slice(2)}`;
     return `(${cleaned.slice(0, 2)}) ${cleaned.slice(2, 7)}-${cleaned.slice(7)}`;
   };
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const input = e.target.value;
-    setPhone(formatPhone(input));
+    setPhone(formatPhone(e.target.value));
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -30,7 +30,6 @@ const Contato = () => {
 
     const cleanedPhone = phone.replace(/\D/g, "");
 
-    // Validações
     if (nome.length < 3 || nome.length > 15) {
       setErrorMessage("O nome deve ter entre 3 e 15 caracteres.");
       setLoading(false);
@@ -56,7 +55,7 @@ const Contato = () => {
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ nome, email, phone }),
+          body: JSON.stringify({ nome, email, phone: cleanedPhone }), // CORRIGIDO AQUI
         }
       );
 

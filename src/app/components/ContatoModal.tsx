@@ -63,7 +63,7 @@ export default function ContatoModal({
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ nome, email, phone }),
+          body: JSON.stringify({ nome, email, phone: cleanedPhone }), // <-- CORRIGIDO AQUI
         }
       );
 
