@@ -34,7 +34,6 @@ export default function FeedbackButton() {
             <span className="text-sm font-medium">Feedback</span>
           </button>
 
-          {/* Botão X */}
           <button
             onClick={() => setVisible(false)}
             className="absolute right-[-5px] bg-black text-white rounded-full p-[6px] hover:bg-gray-700 transition"

@@ -20,22 +20,20 @@ export default function FeedbackModal({
   const [status, setStatus] = useState<null | 'success' | 'error'>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-// dentro de useEffect
-useEffect(() => {
-  if (isOpen) {
-    document.body.style.overflow = 'hidden';
-    document.documentElement.style.overflow = 'hidden';
-  } else {
-    document.body.style.overflow = '';
-    document.documentElement.style.overflow = '';
-  }
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    }
 
-  return () => {
-    document.body.style.overflow = '';
-    document.documentElement.style.overflow = '';
-  };
-}, [isOpen]);
-
+    return () => {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    };
+  }, [isOpen]);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -90,28 +88,21 @@ useEffect(() => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center sm:items-start sm:justify-center sm:overflow-y-auto">
-      {/* Fundo bloqueador que também fecha o modal ao clicar */}
-      <div className="absolute inset-0 bg-black/70" onClick={onClose}></div>
-
-      {/* Modal */}
-      <div
-        className="relative z-10 bg-[#111111] text-white w-full sm:w-[28rem] sm:rounded-xl sm:my-10 p-6 min-h-screen sm:min-h-fit"
-        onClick={(e) => e.stopPropagation()} // Impede clique dentro do modal de fechar ele
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
+    <div
+      className="relative z-10 bg-[#111111] text-white w-full sm:w-[28rem] sm:rounded-xl p-6 pt-8 sm:min-h-fit min-h-screen flex flex-col justify-center"
+      onClick={(e) => e.stopPropagation()}
+    >
+    <button
+      onClick={onClose}
+      className="absolute top-10 sm:top-4 right-4 text-white hover:text-gray-400"
       >
-  
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 text-white hover:text-gray-400"
-        >
-          <X size={28} />
-        </button>
-
+      <X size={28} />
+    </button>
 
         <div className="mb-4 mt-6 sm:mt-0">
           <Image src="/logo1.png" alt="Logo" width={60} height={60} />
         </div>
-
 
         <h2 className="text-base font-semibold leading-snug">
           Como está sendo sua experiência no site?
@@ -120,31 +111,31 @@ useEffect(() => {
           Seu feedback é muito importante para continuarmos evoluindo.
         </p>
 
-
         <form onSubmit={handleSubmit} className="space-y-3 text-sm">
-          <div className="flex items-center gap-2 bg-[#1f1f1f] border border-gray-700 rounded-md px-3 py-2">
+          <div className="flex items-center gap-2 bg-[#1f1f1f] border border-gray-700 rounded-md px-3 py-2 transition-all duration-200 hover:border-purple-500 focus-within:border-purple-500">
             <User className="text-purple-400 w-4 h-4" />
             <input
-              type="text"
-              placeholder="Seu nome"
-              value={nome}
-              onChange={(e) => setNome(e.target.value)}
-              required
-              className="bg-transparent outline-none w-full placeholder-gray-400 text-white text-sm"
+            type="text"
+            placeholder="Seu nome"
+            value={nome}
+            onChange={(e) => setNome(e.target.value)}
+            required
+            className="bg-transparent outline-none w-full placeholder-gray-400 text-white text-sm"
             />
           </div>
 
-          <div className="flex items-center gap-2 bg-[#1f1f1f] border border-gray-700 rounded-md px-3 py-2">
-            <Mail className="text-purple-400 w-4 h-4" />
-            <input
-              type="email"
-              placeholder="Seu e-mail"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="bg-transparent outline-none w-full placeholder-gray-400 text-white text-sm"
-            />
+          <div className="flex items-center gap-2 bg-[#1f1f1f] border border-gray-700 rounded-md px-3 py-2 transition-all duration-200 hover:border-purple-500 focus-within:border-purple-500">
+          <Mail className="text-purple-400 w-4 h-4" />
+          <input
+          type="email"
+          placeholder="Seu e-mail"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          className="bg-transparent outline-none w-full placeholder-gray-400 text-white text-sm"
+          />
           </div>
+
 
           <textarea
             placeholder="Escreva seu feedback, sugestão ou problema"
@@ -156,7 +147,7 @@ useEffect(() => {
             }}
             maxLength={200}
             required
-            className="w-full p-2 min-h-[5rem] max-h-[10rem] rounded-md bg-[#1f1f1f] text-white placeholder-gray-400 border border-gray-700 resize-none focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm"
+            className="w-full p-2 min-h-[5rem] max-h-[10rem] rounded-md bg-[#1f1f1f] text-white placeholder-gray-400 border border-gray-700 resize-none focus:outline-none focus:ring-2 hover:border-purple-500  focus:ring-purple-500 text-sm"
           />
 
           <button
@@ -188,7 +179,6 @@ useEffect(() => {
           )}
         </form>
 
-        {/* Rodapé */}
         <p className="text-[15px] text-gray-500 text-center mt-4">
           Precisa de ajuda?{' '}
           <button

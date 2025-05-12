@@ -12,8 +12,8 @@ const Sobre = () => {
         </h2>
 
         <div className="flex flex-col items-center md:items-center mb-10 px-4 w-full">
-          {/* Logo centralizada em todos os tamanhos */}
-          <div className="w-40 h-40 md:w-52 md:h-52 mb-4">
+          {/* Logo com efeito shine */}
+          <div className="w-40 h-40 md:w-52 md:h-52 mb-4 shine-text">
             <img
               src="/logo1.png"
               alt="Logo Impacto360"
@@ -21,7 +21,6 @@ const Sobre = () => {
             />
           </div>
 
-          {/* Nome centralizado em todos os tamanhos */}
           <h3 className="text-fuchsia-600 text-2xl md:text-3xl font-bold mb-2 text-center">
             IMPACTO
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-azul-tech to-roxo-futurista">
@@ -29,12 +28,11 @@ const Sobre = () => {
             </span>
           </h3>
 
-          {/* Frase principal centralizada em todos os tamanhos */}
-          <p className="text-xl md:text-4xl font-extrabold text-white mb-6 max-w-3xl leading-snug text-center">
-            Somos a ponte entre a <span className="text-fuchsia-500">visão do agora</span> e o <span className="text-azul-tech">futuro</span> que você quer construir.
+          {/* Frase principal com efeito shine-text */}
+          <p className="text-xl md:text-4xl font-extrabold text-white mb-6 max-w-3xl leading-snug text-center shine-text">
+            Somos a ponte entre a visão do agora e o futuro que você quer construir.
           </p>
 
-          {/* Textos descritivos: à esquerda no mobile, centralizados no desktop */}
           <div className="text-left md:text-center text-gray-300 text-sm md:text-base max-w-2xl leading-relaxed space-y-3 w-full">
             <p>
               Somos uma agência criada para transformar ideias em experiências inesquecíveis. Desde 2024, unimos inovação, criatividade e tecnologia para dar vida a projetos que conectam marcas às pessoas de forma autêntica e impactante.

@@ -83,16 +83,14 @@ export default function ContatoModal({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center sm:items-start sm:justify-center sm:overflow-y-auto">
-      <div className="absolute inset-0 bg-black/70" onClick={onClose}></div>
-
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
       <div
-        className="relative z-10 bg-[#111111] text-white w-full sm:w-[28rem] sm:rounded-xl sm:my-10 p-6 min-h-screen sm:min-h-fit"
+        className="relative z-10 bg-[#111111] text-white w-full sm:w-[28rem] sm:rounded-xl p-6 pt-5 sm:min-h-fit min-h-screen flex flex-col justify-center"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-white hover:text-gray-400"
+          className="absolute top-12 sm:top-4 right-4 text-white hover:text-gray-400"
         >
           <X size={28} />
         </button>
@@ -105,7 +103,8 @@ export default function ContatoModal({
         <p className="text-xs text-gray-400 mb-4">Retornaremos o mais rápido possível.</p>
 
         <form onSubmit={handleSubmit} className="space-y-3 text-sm">
-          <div className="flex items-center gap-2 bg-[#1f1f1f] border border-gray-700 rounded-md px-3 py-2">
+          {/* Nome */}
+          <div className="flex items-center gap-2 bg-[#1f1f1f] border border-gray-700 rounded-md px-3 py-2 transition-all duration-200 hover:border-purple-500 focus-within:border-purple-500">
             <User className="text-purple-400 w-4 h-4" />
             <input
               type="text"
@@ -117,7 +116,8 @@ export default function ContatoModal({
             />
           </div>
 
-          <div className="flex items-center gap-2 bg-[#1f1f1f] border border-gray-700 rounded-md px-3 py-2">
+          {/* Email */}
+          <div className="flex items-center gap-2 bg-[#1f1f1f] border border-gray-700 rounded-md px-3 py-2 transition-all duration-200 hover:border-purple-500 focus-within:border-purple-500">
             <Mail className="text-purple-400 w-4 h-4" />
             <input
               type="email"
@@ -129,7 +129,8 @@ export default function ContatoModal({
             />
           </div>
 
-          <div className="flex items-center gap-2 bg-[#1f1f1f] border border-gray-700 rounded-md px-3 py-2">
+          {/* Telefone */}
+          <div className="flex items-center gap-2 bg-[#1f1f1f] border border-gray-700 rounded-md px-3 py-2 transition-all duration-200 hover:border-purple-500 focus-within:border-purple-500">
             <Phone className="text-purple-400 w-4 h-4" />
             <input
               type="tel"

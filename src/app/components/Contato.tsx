@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, FormEvent } from "react";
+import { User, Mail, Phone as PhoneIcon } from "lucide-react";
 
 const Contato = () => {
   const [nome, setNome] = useState("");
@@ -55,7 +56,7 @@ const Contato = () => {
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ nome, email, phone: cleanedPhone }), // CORRIGIDO AQUI
+          body: JSON.stringify({ nome, email, phone: cleanedPhone }),
         }
       );
 
@@ -81,47 +82,61 @@ const Contato = () => {
           <span className="text-azul-principal">CONTATO</span>
         </h2>
         <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
+          {/* Nome */}
           <div>
             <label htmlFor="nome" className="block text-gray-100 text-sm font-bold mb-2">
               Nome
             </label>
-            <input
-              type="text"
-              id="nome"
-              value={nome}
-              onChange={(e) => setNome(e.target.value)}
-              required
-              className="appearance-none border border-gray-700 rounded-full w-full py-2.5 px-5 text-white bg-gray-900 leading-tight focus:outline-none focus:ring-2 focus:ring-azul-principal focus:border-transparent placeholder-gray-400 text-sm"
-              placeholder="Seu nome"
-            />
+            <div className="flex items-center gap-3 rounded-full border border-gray-700 bg-gray-900 px-5 py-2.5 transition-all duration-200 hover:border-azul-principal focus-within:border-azul-principal">
+              <User className="w-4 h-4 text-azul-principal" />
+              <input
+                type="text"
+                id="nome"
+                value={nome}
+                onChange={(e) => setNome(e.target.value)}
+                required
+                placeholder="Seu nome"
+                className="w-full bg-transparent text-white placeholder-gray-400 text-sm focus:outline-none"
+              />
+            </div>
           </div>
+
+          {/* Email */}
           <div>
             <label htmlFor="email" className="block text-gray-100 text-sm font-bold mb-2">
               E-mail
             </label>
-            <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="appearance-none border border-gray-700 rounded-full w-full py-2.5 px-5 text-white bg-gray-900 leading-tight focus:outline-none focus:ring-2 focus:ring-azul-principal focus:border-transparent placeholder-gray-400 text-sm"
-              placeholder="Seu e-mail"
-            />
+            <div className="flex items-center gap-3 rounded-full border border-gray-700 bg-gray-900 px-5 py-2.5 transition-all duration-200 hover:border-azul-principal focus-within:border-azul-principal">
+              <Mail className="w-4 h-4 text-azul-principal" />
+              <input
+                type="email"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                placeholder="Seu e-mail"
+                className="w-full bg-transparent text-white placeholder-gray-400 text-sm focus:outline-none"
+              />
+            </div>
           </div>
+
+          {/* Telefone */}
           <div>
             <label htmlFor="phone" className="block text-gray-100 text-sm font-bold mb-2">
               Telefone
             </label>
-            <input
-              type="tel"
-              id="phone"
-              value={phone}
-              onChange={handlePhoneChange}
-              required
-              className="appearance-none border border-gray-700 rounded-full w-full py-2.5 px-5 text-white bg-gray-900 leading-tight focus:outline-none focus:ring-2 focus:ring-azul-principal focus:border-transparent placeholder-gray-400 text-sm"
-              placeholder="(XX) XXXXX-XXXX"
-            />
+            <div className="flex items-center gap-3 rounded-full border border-gray-700 bg-gray-900 px-5 py-2.5 transition-all duration-200 hover:border-azul-principal focus-within:border-azul-principal">
+              <PhoneIcon className="w-4 h-4 text-azul-principal" />
+              <input
+                type="tel"
+                id="phone"
+                value={phone}
+                onChange={handlePhoneChange}
+                required
+                placeholder="(XX) XXXXX-XXXX"
+                className="w-full bg-transparent text-white placeholder-gray-400 text-sm focus:outline-none"
+              />
+            </div>
           </div>
 
           <button
