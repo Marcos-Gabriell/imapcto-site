@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, FormEvent } from 'react';
-import { X, ArrowRight, Mail, User, Phone } from 'lucide-react';
+import { X, ArrowRight, Mail, User, Phone as PhoneIcon } from 'lucide-react';
 import Image from 'next/image';
 
 export default function ContatoModal({
@@ -33,6 +33,16 @@ export default function ContatoModal({
     };
   }, [isOpen]);
 
+  function formatTelefone(value: string) {
+    const cleaned = value.replace(/\D/g, '').slice(0, 11); // Limita a 11 dígitos
+
+    if (cleaned.length <= 10) {
+      return cleaned.replace(/(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3').trim();
+    } else {
+      return cleaned.replace(/(\d{2})(\d{5})(\d{0,4})/, '($1) $2-$3').trim();
+    }
+  }
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
@@ -52,17 +62,18 @@ export default function ContatoModal({
       return;
     }
 
-    if (telefone.length < 10 || telefone.length > 15) {
-      setErrorMessage('Digite um telefone válido com DDD.');
+    const cleanedPhone = telefone.replace(/\D/g, '');
+    if (cleanedPhone.length !== 11) {
+      setErrorMessage('O telefone deve conter 11 dígitos (incluindo DDD).');
       setLoading(false);
       return;
     }
 
     try {
-      const response = await fetch('https://envio-de-email-portifolio.onrender.com/contato-email', {
+      const response = await fetch('https://envio-de-email-portifolio.onrender.com/impacto360-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nome, email, telefone }),
+        body: JSON.stringify({ nome, email, phone: cleanedPhone }),
       });
 
       if (response.ok) {
@@ -131,12 +142,12 @@ export default function ContatoModal({
 
           {/* Telefone */}
           <div className="flex items-center gap-2 bg-[#1f1f1f] border border-gray-700 rounded-md px-3 py-2 transition-all duration-200 hover:border-purple-500 focus-within:border-purple-500">
-            <Phone className="text-purple-400 w-4 h-4" />
+            <PhoneIcon className="text-purple-400 w-4 h-4" />
             <input
               type="tel"
               placeholder="(XX) XXXXX-XXXX"
               value={telefone}
-              onChange={(e) => setTelefone(e.target.value)}
+              onChange={(e) => setTelefone(formatTelefone(e.target.value))}
               required
               className="bg-transparent outline-none w-full placeholder-gray-400 text-white text-sm"
             />
