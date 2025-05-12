@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Hero = () => {
+const Hero = ({ onOpenContato }: { onOpenContato: () => void }) => {
   return (
     <section className="bg-preto-profundo text-branco-neutro py-16 md:py-24 lg:py-36 relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-full bg-preto-profundo z-0"></div>
@@ -17,7 +17,10 @@ const Hero = () => {
             <span className="text-fuchsia-600">CRESCER 360°</span>
           </h1>
 
-          <button className="bg-gradient-to-r from-roxo-futurista to-fuchsia-600 text-branco-neutro font-semibold py-3 px-6 rounded-full transition-all duration-300 hover:from-roxo-futurista hover:to-roxo-futurista">
+          <button
+            onClick={onOpenContato}
+            className="bg-gradient-to-r from-roxo-futurista to-fuchsia-600 text-branco-neutro font-semibold py-3 px-6 rounded-full transition-all duration-300 hover:from-roxo-futurista hover:to-roxo-futurista"
+          >
             FALE CONOSCO
           </button>
         </div>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, FormEvent } from 'react';
+import { useState, useEffect, FormEvent } from 'react';
 import { X, ArrowRight, Mail, User } from 'lucide-react';
 import Image from 'next/image';
 
@@ -19,6 +19,23 @@ export default function FeedbackModal({
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState<null | 'success' | 'error'>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+// dentro de useEffect
+useEffect(() => {
+  if (isOpen) {
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
+  }
+
+  return () => {
+    document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
+  };
+}, [isOpen]);
+
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -73,22 +90,29 @@ export default function FeedbackModal({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/60 flex justify-center items-center z-50 px-2">
-      <div className="bg-[#111111] text-white rounded-2xl p-5 w-full max-w-sm sm:max-w-md shadow-2xl relative max-h-[90vh] overflow-y-auto">
-        {/* Botão de fechar */}
+    <div className="fixed inset-0 z-50 flex items-center justify-center sm:items-start sm:justify-center sm:overflow-y-auto">
+      {/* Fundo bloqueador que também fecha o modal ao clicar */}
+      <div className="absolute inset-0 bg-black/70" onClick={onClose}></div>
+
+      {/* Modal */}
+      <div
+        className="relative z-10 bg-[#111111] text-white w-full sm:w-[28rem] sm:rounded-xl sm:my-10 p-6 min-h-screen sm:min-h-fit"
+        onClick={(e) => e.stopPropagation()} // Impede clique dentro do modal de fechar ele
+      >
+  
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 hover:text-gray-400"
+          className="absolute top-4 right-4 text-white hover:text-gray-400"
         >
-          <X size={20} />
+          <X size={28} />
         </button>
 
-        {/* Logo */}
-        <div className="mb-3">
+
+        <div className="mb-4 mt-6 sm:mt-0">
           <Image src="/logo1.png" alt="Logo" width={60} height={60} />
         </div>
 
-        {/* Título */}
+
         <h2 className="text-base font-semibold leading-snug">
           Como está sendo sua experiência no site?
         </h2>
@@ -96,7 +120,7 @@ export default function FeedbackModal({
           Seu feedback é muito importante para continuarmos evoluindo.
         </p>
 
-        {/* Formulário */}
+
         <form onSubmit={handleSubmit} className="space-y-3 text-sm">
           <div className="flex items-center gap-2 bg-[#1f1f1f] border border-gray-700 rounded-md px-3 py-2">
             <User className="text-purple-400 w-4 h-4" />
@@ -165,7 +189,7 @@ export default function FeedbackModal({
         </form>
 
         {/* Rodapé */}
-        <p className="text-[15px] text-gray-500 text-center mt-3">
+        <p className="text-[15px] text-gray-500 text-center mt-4">
           Precisa de ajuda?{' '}
           <button
             type="button"

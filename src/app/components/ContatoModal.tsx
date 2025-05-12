@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, FormEvent } from 'react';
-import { X, Mail, Phone, User, ArrowRight } from 'lucide-react';
+import { useState, useEffect, FormEvent } from 'react';
+import { X, ArrowRight, Mail, User, Phone } from 'lucide-react';
 import Image from 'next/image';
 
 export default function ContatoModal({
@@ -13,22 +13,25 @@ export default function ContatoModal({
 }) {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
+  const [telefone, setTelefone] = useState('');
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState<null | 'success' | 'error'>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const formatPhone = (value: string) => {
-    const cleaned = value.replace(/\D/g, '').slice(0, 11);
-    if (cleaned.length <= 2) return `(${cleaned}`;
-    if (cleaned.length <= 7) return `(${cleaned.slice(0, 2)}) ${cleaned.slice(2)}`;
-    return `(${cleaned.slice(0, 2)}) ${cleaned.slice(2, 7)}-${cleaned.slice(7)}`;
-  };
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    }
 
-  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const input = e.target.value;
-    setPhone(formatPhone(input));
-  };
+    return () => {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    };
+  }, [isOpen]);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -36,42 +39,37 @@ export default function ContatoModal({
     setStatus(null);
     setErrorMessage(null);
 
-    const cleanedPhone = phone.replace(/\D/g, '');
-
     if (nome.length < 3 || nome.length > 15) {
-      setErrorMessage("O nome deve ter entre 3 e 15 caracteres.");
+      setErrorMessage('O nome deve ter entre 3 e 15 caracteres.');
       setLoading(false);
       return;
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      setErrorMessage("Por favor, insira um e-mail válido.");
+      setErrorMessage('Por favor, insira um e-mail válido.');
       setLoading(false);
       return;
     }
 
-    if (cleanedPhone.length !== 11) {
-      setErrorMessage("O telefone deve conter 11 dígitos.");
+    if (telefone.length < 10 || telefone.length > 15) {
+      setErrorMessage('Digite um telefone válido com DDD.');
       setLoading(false);
       return;
     }
 
     try {
-      const response = await fetch(
-        'https://envio-de-email-portifolio.onrender.com/impacto360-email',
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ nome, email, phone: cleanedPhone }), // <-- CORRIGIDO AQUI
-        }
-      );
+      const response = await fetch('https://envio-de-email-portifolio.onrender.com/contato-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nome, email, telefone }),
+      });
 
       if (response.ok) {
         setStatus('success');
         setNome('');
         setEmail('');
-        setPhone('');
+        setTelefone('');
       } else {
         setStatus('error');
       }
@@ -85,25 +83,26 @@ export default function ContatoModal({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/60 flex justify-center items-center z-50 px-2">
-      <div className="bg-[#111111] text-white rounded-2xl p-5 w-full max-w-sm sm:max-w-md shadow-2xl relative max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center sm:items-start sm:justify-center sm:overflow-y-auto">
+      <div className="absolute inset-0 bg-black/70" onClick={onClose}></div>
+
+      <div
+        className="relative z-10 bg-[#111111] text-white w-full sm:w-[28rem] sm:rounded-xl sm:my-10 p-6 min-h-screen sm:min-h-fit"
+        onClick={(e) => e.stopPropagation()}
+      >
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 hover:text-gray-400"
+          className="absolute top-4 right-4 text-white hover:text-gray-400"
         >
-          <X size={20} />
+          <X size={28} />
         </button>
 
-        <div className="mb-3">
+        <div className="mb-4 mt-6 sm:mt-0">
           <Image src="/logo1.png" alt="Logo" width={60} height={60} />
         </div>
 
-        <h2 className="text-base font-semibold leading-snug">
-          Deixe seu contato
-        </h2>
-        <p className="text-xs text-gray-400 mb-4">
-          Retornaremos o mais rápido possível.
-        </p>
+        <h2 className="text-base font-semibold leading-snug">Deixe seu contato</h2>
+        <p className="text-xs text-gray-400 mb-4">Retornaremos o mais rápido possível.</p>
 
         <form onSubmit={handleSubmit} className="space-y-3 text-sm">
           <div className="flex items-center gap-2 bg-[#1f1f1f] border border-gray-700 rounded-md px-3 py-2">
@@ -135,8 +134,8 @@ export default function ContatoModal({
             <input
               type="tel"
               placeholder="(XX) XXXXX-XXXX"
-              value={phone}
-              onChange={handlePhoneChange}
+              value={telefone}
+              onChange={(e) => setTelefone(e.target.value)}
               required
               className="bg-transparent outline-none w-full placeholder-gray-400 text-white text-sm"
             />
